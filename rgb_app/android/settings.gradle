@@ -1,0 +1,3 @@
+rootProject.name = 'rgb_app'
+
+include ':app'
