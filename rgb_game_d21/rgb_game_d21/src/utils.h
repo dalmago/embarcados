@@ -8,7 +8,7 @@
 // uint16_t timer_count = 0;
 struct tcc_module tcc_instance;
 
-void timer_config(void);
+// void timer_config(void);
 void delay(uint16_t ms);
 
 #endif

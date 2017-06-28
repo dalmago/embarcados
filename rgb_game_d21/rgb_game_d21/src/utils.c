@@ -1,8 +1,7 @@
 #include "utils.h"
 
-void timer_config(void){
-    
-}
+// void timer_config(void){
+// }
 
 void delay(uint16_t ms){
     struct tcc_config tcc_cfg;

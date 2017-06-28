@@ -3,7 +3,6 @@
 
 #include <stdint.h>
 #include <asf.h>
-
 #include "at_ble_api.h"
 
 #define CHECK_ERROR(VAR,LABEL) if(AT_BLE_SUCCESS != VAR) { goto LABEL; }
