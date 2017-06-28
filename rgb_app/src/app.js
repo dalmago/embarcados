@@ -12,7 +12,7 @@ import {
   Button,
   TouchableOpacity,
   TouchableHighlight,
-  Toast,
+  ToastAndroid,
 } from 'react-native';
 
 import BluetoothSerial from 'react-native-bluetooth-serial';
@@ -20,9 +20,13 @@ import BluetoothSerial from 'react-native-bluetooth-serial';
 export class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { estado: 0, devs: BluetoothSerial.list() };
+    this.state = { estado: 0 };
+                  
+    BluetoothSerial.list().then((values) => {console.log(values)});
   }
+  
   render() {
+    console.log(this.state.devs);
     var blankSpace = <Text style={{fontSize: 50}}>{'\n'}</Text>;
     
     return (
@@ -38,12 +42,11 @@ export class App extends Component {
           justifyContent: "center",
           alignItems: "center"
         }}>
-          <Text>Dispositivo pareado:</Text>
-          <Text>None</Text>
+          <Text style={{fontWeight: 'bold', fontSize:17}}>O dispositivo bluetooth{'\n'}deve estar conectado</Text>
           <Text></Text>
           <Text></Text>
           <Button
-            onPress={gameInit}
+            onPress={() => this.gameInit()}
             title="Iniciar Jogo"
             color="rgba(0,90,190,1)"
           />
@@ -66,21 +69,21 @@ export class App extends Component {
             alignItems: 'center'
           }}>          
             <TouchableHighlight
-              onPress={() => {this.colorPressed('R')}}
+              onPress={() => this.colorPressed('r')}
               activeOpacity={75 / 100}
               underlayColor={"rgb(210,210,210)"}>
               <View style={[styles.rgb_block, {backgroundColor: "rgb(208,2,27)"}]} />
             </TouchableHighlight>
 
             <TouchableHighlight
-              onPress={() => {this.colorPressed('G')}}
+              onPress={() => this.colorPressed('g')}
               activeOpacity={75 / 100}
               underlayColor={"rgb(210,210,210)"}>
               <View style={[styles.rgb_block, {backgroundColor: "rgb(126,211,33)"}]} />
             </TouchableHighlight>
 
             <TouchableHighlight
-              onPress={() => {this.colorPressed('B')}}
+              onPress={() => this.colorPressed('b')}
               activeOpacity={75 / 100}
               underlayColor={"rgb(210,210,210)"}>
               <View style={[styles.rgb_block, {backgroundColor: "rgb(0,122,255)"}]} />
@@ -92,20 +95,58 @@ export class App extends Component {
     );
   }
   
-  colorPressed(color){
-    BluetoothSerial.write(color).then((res) => {
-      Toast.showShortBottom('Successfuly wrote to device');
-      })
-      .catch((err) => {Toast.showShortBottom(err.message);})   
+    colorPressed(color){
+      BluetoothSerial.write(color).then((res) => {}).catch((err) => {
+        ToastAndroid.show("Error color: " + err.message, ToastAndroid.SHORT);
+        console.error("Error color: " + err.message);
+      });
     }
   
   gameInit(){
-    BluetoothSerial.connect(device.id)
-    .then((res) => {
-      Toast.showShortBottom('Connected to device');
-      this.setState({ estado: 1 });
+    BluetoothSerial.write('i').then((res) => {
+      ToastAndroid.show("Atenção na sequência de cores!", ToastAndroid.LONG);
+      console.log("Atenção na sequência de cores!");      
+      
+      this.interval = setInterval(this.waitForOk, 500);
     })
-    .catch((err) => Toast.showShortBottom(err.message));
+    .catch((err) => {
+      ToastAndroid.show("Error i: " + err.message, ToastAndroid.SHORT);
+      console.error("Error i: " + err.message);
+    });  
+  }
+  
+  waitForOk(){
+    BluetoothSerial.available().then((length) => {
+      BluetoothSerial.readFromDevice().then((data) => {
+        console.log('data received: ' + data);
+        
+        if (data == 'o'){
+          clearInterval(this.interval);
+          this.setState({ estado: 1 });
+          
+          this.interval = setInterval(this.waitForScore, 500);
+        }
+      }).catch((err) => {
+        ToastAndroid.show("Error o: " + err.message, ToastAndroid.SHORT);
+        console.error("Error o: " + err.message);
+      });
+    }); 
+  }
+  
+  waitForScore(){
+    BluetoothSerial.available().then((length) => {
+      BluetoothSerial.readFromDevice().then((data) => {        
+        ToastAndroid.show("Seu score: " + data, ToastAndroid.LONG);
+        console.log("Seu score: " + data);
+        
+        clearInterval(this.interval);
+        this.setState({ estado: 0 });
+        
+      }).catch((err) => {
+        ToastAndroid.show("Error score: " + err.message, ToastAndroid.SHORT);
+        console.error("Error score: " + err.message);
+      });
+    }); 
   }
 }
 
