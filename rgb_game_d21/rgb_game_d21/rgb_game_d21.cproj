@@ -30,10 +30,11 @@
       <framework-data>
         <options>
           <option id="common.boards" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="common2.components.memory.serial_flash.at25dfx" value="Add" config="polled_spi" content-id="Atmel.ASF" />
           <option id="sam0.drivers.port" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="sam0.drivers.sercom.usart" value="Add" config="polled" content-id="Atmel.ASF" />
           <option id="sam0.drivers.system" value="Add" config="" content-id="Atmel.ASF" />
           <option id="sam0.drivers.tcc" value="Add" config="polled" content-id="Atmel.ASF" />
-          <option id="sam0.drivers.sercom.usart" value="Add" config="polled" content-id="Atmel.ASF" />
           <option id="common.applications.user_application.xplained_pro2" value="Add" config="" content-id="Atmel.ASF" />
           <option id="common.utils" value="Add" config="" content-id="Atmel.ASF" />
           <option id="sam0.utils.cmsis.samd21.source.template" value="Add" config="" content-id="Atmel.ASF" />
@@ -43,6 +44,7 @@
           <configuration key="config.common2.services.delay" value="systick" default="systick" content-id="Atmel.ASF" />
           <configuration key="config.thirdparty.wireless.ble_sdk.services.timer" value="timer" default="timer" content-id="Atmel.ASF" />
           <configuration key="config.sam0.drivers.tc" value="callback" default="callback" content-id="Atmel.ASF" />
+          <configuration key="config.sam0.drivers.sercom.spi" value="callback" default="callback" content-id="Atmel.ASF" />
         </configurations>
         <files>
           <file path="src/main.c" framework="" version="" source="common2/applications/xplained_pro_user_application/main.c" changed="False" content-id="Atmel.ASF" />
@@ -222,6 +224,23 @@
           <file path="src/ASF/sam0/drivers/tcc/quick_start_dma/qs_tcc_dma.h" framework="" version="3.30.1" source="sam0\drivers\tcc\quick_start_dma\qs_tcc_dma.h" changed="False" content-id="Atmel.ASF" />
           <file path="src/ASF/sam0/drivers/tcc/tcc.h" framework="" version="3.30.1" source="sam0\drivers\tcc\tcc.h" changed="False" content-id="Atmel.ASF" />
           <file path="src/ASF/sam0/drivers/tcc/quick_start/qs_tcc_basic.h" framework="" version="3.30.1" source="sam0\drivers\tcc\quick_start\qs_tcc_basic.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/Config/conf_spi.h" framework="" version="3.30.1" source="sam0\drivers\sercom\spi\module_config\conf_spi.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/common2/components/memory/serial_flash/at25dfx/at25dfx.c" framework="" version="3.30.1" source="common2\components\memory\serial_flash\at25dfx\at25dfx.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/common2/components/memory/serial_flash/at25dfx/at25dfx.h" framework="" version="3.30.1" source="common2\components\memory\serial_flash\at25dfx\at25dfx.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/common2/components/memory/serial_flash/at25dfx/quick_start_basic/qs_at25dfx_basic.h" framework="" version="3.30.1" source="common2\components\memory\serial_flash\at25dfx\quick_start_basic\qs_at25dfx_basic.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/sercom/sercom_interrupt.c" framework="" version="3.30.1" source="sam0\drivers\sercom\sercom_interrupt.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/sercom/sercom_interrupt.h" framework="" version="3.30.1" source="sam0\drivers\sercom\sercom_interrupt.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/sercom/spi/spi_interrupt.c" framework="" version="3.30.1" source="sam0\drivers\sercom\spi\spi_interrupt.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/sercom/spi/spi.c" framework="" version="3.30.1" source="sam0\drivers\sercom\spi\spi.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/sercom/spi/quick_start_dma/qs_spi_dma_use.h" framework="" version="3.30.1" source="sam0\drivers\sercom\spi\quick_start_dma\qs_spi_dma_use.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/sercom/spi/spi_interrupt.h" framework="" version="3.30.1" source="sam0\drivers\sercom\spi\spi_interrupt.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/sercom/spi/quick_start_master_callback/qs_spi_master_callback.h" framework="" version="3.30.1" source="sam0\drivers\sercom\spi\quick_start_master_callback\qs_spi_master_callback.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/sercom/spi/spi.h" framework="" version="3.30.1" source="sam0\drivers\sercom\spi\spi.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/sercom/spi/quick_start_slave/qs_spi_slave_basic.h" framework="" version="3.30.1" source="sam0\drivers\sercom\spi\quick_start_slave\qs_spi_slave_basic.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/sercom/spi/quick_start_slave_callback/qs_spi_slave_callback.h" framework="" version="3.30.1" source="sam0\drivers\sercom\spi\quick_start_slave_callback\qs_spi_slave_callback.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/sercom/spi/quick_start_master/qs_spi_master_basic.h" framework="" version="3.30.1" source="sam0\drivers\sercom\spi\quick_start_master\qs_spi_master_basic.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/common2/components/memory/serial_flash/at25dfx/hal/spi_polled/at25dfx_hal.h" framework="" version="3.30.1" source="common2\components\memory\serial_flash\at25dfx\hal\spi_polled\at25dfx_hal.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/common2/components/memory/serial_flash/at25dfx/hal/spi_polled/at25dfx_priv_hal.h" framework="" version="3.30.1" source="common2\components\memory\serial_flash\at25dfx\hal\spi_polled\at25dfx_priv_hal.h" changed="False" content-id="Atmel.ASF" />
         </files>
         <documentation help="http://asf.atmel.com/docs/3.30.1/common.applications.user_application.xplained_pro2.samd21_xplained_pro/html/index.html" />
         <offline-documentation help="" />
@@ -265,6 +284,7 @@
       <Value>ARM_MATH_CM0PLUS=true</Value>
       <Value>TCC_ASYNC=false</Value>
       <Value>USART_CALLBACK_MODE=false</Value>
+      <Value>SPI_CALLBACK_MODE=true</Value>
     </ListValues>
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.IncludePaths>
@@ -297,6 +317,9 @@
       <Value>../src/ASF/sam0/drivers/sercom</Value>
       <Value>../src/ASF/sam0/drivers/sercom/usart</Value>
       <Value>../src/ASF/sam0/drivers/tcc</Value>
+      <Value>../src/ASF/common2/components/memory/serial_flash/at25dfx</Value>
+      <Value>../src/ASF/sam0/drivers/sercom/spi</Value>
+      <Value>../src/ASF/common2/components/memory/serial_flash/at25dfx/hal/spi_polled</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
@@ -348,9 +371,12 @@
       <Value>../src/ASF/sam0/drivers/sercom</Value>
       <Value>../src/ASF/sam0/drivers/sercom/usart</Value>
       <Value>../src/ASF/sam0/drivers/tcc</Value>
+      <Value>../src/ASF/common2/components/memory/serial_flash/at25dfx</Value>
+      <Value>../src/ASF/sam0/drivers/sercom/spi</Value>
+      <Value>../src/ASF/common2/components/memory/serial_flash/at25dfx/hal/spi_polled</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
-  <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM0PLUS=true -DBOARD=SAMD21_XPLAINED_PRO -D__SAMD21J18A__ -DTCC_ASYNC=false -DUSART_CALLBACK_MODE=false</armgcc.preprocessingassembler.general.AssemblerFlags>
+  <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM0PLUS=true -DBOARD=SAMD21_XPLAINED_PRO -D__SAMD21J18A__ -DTCC_ASYNC=false -DUSART_CALLBACK_MODE=false -DSPI_CALLBACK_MODE=true</armgcc.preprocessingassembler.general.AssemblerFlags>
   <armgcc.preprocessingassembler.general.IncludePaths>
     <ListValues>
       <Value>../common2/applications/xplained_pro_user_application/samd21j18a_samd21_xplained_pro/config</Value>
@@ -381,6 +407,9 @@
       <Value>../src/ASF/sam0/drivers/sercom</Value>
       <Value>../src/ASF/sam0/drivers/sercom/usart</Value>
       <Value>../src/ASF/sam0/drivers/tcc</Value>
+      <Value>../src/ASF/common2/components/memory/serial_flash/at25dfx</Value>
+      <Value>../src/ASF/sam0/drivers/sercom/spi</Value>
+      <Value>../src/ASF/common2/components/memory/serial_flash/at25dfx/hal/spi_polled</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
 </ArmGcc>
@@ -402,6 +431,7 @@
       <Value>ARM_MATH_CM0PLUS=true</Value>
       <Value>TCC_ASYNC=false</Value>
       <Value>USART_CALLBACK_MODE=false</Value>
+      <Value>SPI_CALLBACK_MODE=true</Value>
     </ListValues>
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.IncludePaths>
@@ -434,6 +464,9 @@
       <Value>../src/ASF/sam0/drivers/sercom</Value>
       <Value>../src/ASF/sam0/drivers/sercom/usart</Value>
       <Value>../src/ASF/sam0/drivers/tcc</Value>
+      <Value>../src/ASF/common2/components/memory/serial_flash/at25dfx</Value>
+      <Value>../src/ASF/sam0/drivers/sercom/spi</Value>
+      <Value>../src/ASF/common2/components/memory/serial_flash/at25dfx/hal/spi_polled</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.OtherFlags>-fdata-sections</armgcc.compiler.optimization.OtherFlags>
@@ -486,10 +519,13 @@
       <Value>../src/ASF/sam0/drivers/sercom</Value>
       <Value>../src/ASF/sam0/drivers/sercom/usart</Value>
       <Value>../src/ASF/sam0/drivers/tcc</Value>
+      <Value>../src/ASF/common2/components/memory/serial_flash/at25dfx</Value>
+      <Value>../src/ASF/sam0/drivers/sercom/spi</Value>
+      <Value>../src/ASF/common2/components/memory/serial_flash/at25dfx/hal/spi_polled</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
   <armgcc.assembler.debugging.DebugLevel>Default (-g)</armgcc.assembler.debugging.DebugLevel>
-  <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM0PLUS=true -DBOARD=SAMD21_XPLAINED_PRO -D__SAMD21J18A__ -DTCC_ASYNC=false -DUSART_CALLBACK_MODE=false</armgcc.preprocessingassembler.general.AssemblerFlags>
+  <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM0PLUS=true -DBOARD=SAMD21_XPLAINED_PRO -D__SAMD21J18A__ -DTCC_ASYNC=false -DUSART_CALLBACK_MODE=false -DSPI_CALLBACK_MODE=true</armgcc.preprocessingassembler.general.AssemblerFlags>
   <armgcc.preprocessingassembler.general.IncludePaths>
     <ListValues>
       <Value>../common2/applications/xplained_pro_user_application/samd21j18a_samd21_xplained_pro/config</Value>
@@ -520,6 +556,9 @@
       <Value>../src/ASF/sam0/drivers/sercom</Value>
       <Value>../src/ASF/sam0/drivers/sercom/usart</Value>
       <Value>../src/ASF/sam0/drivers/tcc</Value>
+      <Value>../src/ASF/common2/components/memory/serial_flash/at25dfx</Value>
+      <Value>../src/ASF/sam0/drivers/sercom/spi</Value>
+      <Value>../src/ASF/common2/components/memory/serial_flash/at25dfx/hal/spi_polled</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
   <armgcc.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcc.preprocessingassembler.debugging.DebugLevel>
@@ -529,6 +568,14 @@
   <ItemGroup>
     <Folder Include="src\" />
     <Folder Include="src\ASF\" />
+    <Folder Include="src\ASF\common2\" />
+    <Folder Include="src\ASF\common2\components\" />
+    <Folder Include="src\ASF\common2\components\memory\" />
+    <Folder Include="src\ASF\common2\components\memory\serial_flash\" />
+    <Folder Include="src\ASF\common2\components\memory\serial_flash\at25dfx\" />
+    <Folder Include="src\ASF\common2\components\memory\serial_flash\at25dfx\hal\" />
+    <Folder Include="src\ASF\common2\components\memory\serial_flash\at25dfx\hal\spi_polled\" />
+    <Folder Include="src\ASF\common2\components\memory\serial_flash\at25dfx\quick_start_basic\" />
     <Folder Include="src\ASF\common\" />
     <Folder Include="src\ASF\common\boards\" />
     <Folder Include="src\ASF\common\utils\" />
@@ -540,6 +587,12 @@
     <Folder Include="src\ASF\sam0\drivers\port\" />
     <Folder Include="src\ASF\sam0\drivers\port\quick_start\" />
     <Folder Include="src\ASF\sam0\drivers\sercom\" />
+    <Folder Include="src\ASF\sam0\drivers\sercom\spi\" />
+    <Folder Include="src\ASF\sam0\drivers\sercom\spi\quick_start_dma\" />
+    <Folder Include="src\ASF\sam0\drivers\sercom\spi\quick_start_master\" />
+    <Folder Include="src\ASF\sam0\drivers\sercom\spi\quick_start_master_callback\" />
+    <Folder Include="src\ASF\sam0\drivers\sercom\spi\quick_start_slave\" />
+    <Folder Include="src\ASF\sam0\drivers\sercom\spi\quick_start_slave_callback\" />
     <Folder Include="src\ASF\sam0\drivers\sercom\usart\" />
     <Folder Include="src\ASF\sam0\drivers\sercom\usart\quick_start\" />
     <Folder Include="src\ASF\sam0\drivers\sercom\usart\quick_start_dma\" />
@@ -583,6 +636,21 @@
     <Folder Include="src\config\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\ASF\common2\components\memory\serial_flash\at25dfx\at25dfx.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\common2\components\memory\serial_flash\at25dfx\at25dfx.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\common2\components\memory\serial_flash\at25dfx\quick_start_basic\qs_at25dfx_basic.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\common2\components\memory\serial_flash\at25dfx\hal\spi_polled\at25dfx_hal.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\common2\components\memory\serial_flash\at25dfx\hal\spi_polled\at25dfx_priv_hal.h">
+      <SubType>compile</SubType>
+    </None>
     <Compile Include="src\ASF\sam0\drivers\sercom\sercom.c">
       <SubType>compile</SubType>
     </Compile>
@@ -595,12 +663,57 @@
     <None Include="src\ASF\sam0\drivers\tcc\quick_start\qs_tcc_basic.h">
       <SubType>compile</SubType>
     </None>
+    <Compile Include="src\ASF\sam0\drivers\sercom\sercom_interrupt.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam0\drivers\sercom\sercom_interrupt.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\sam0\drivers\sercom\spi\quick_start_dma\qs_spi_dma_use.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\sam0\drivers\sercom\spi\quick_start_master_callback\qs_spi_master_callback.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\sam0\drivers\sercom\spi\quick_start_slave\qs_spi_slave_basic.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\sam0\drivers\sercom\spi\quick_start_slave_callback\qs_spi_slave_callback.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\sam0\drivers\sercom\spi\quick_start_master\qs_spi_master_basic.h">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="src\ASF\sam0\drivers\sercom\spi\spi.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam0\drivers\sercom\spi\spi.h">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="src\ASF\sam0\drivers\sercom\spi\spi_interrupt.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam0\drivers\sercom\spi\spi_interrupt.h">
+      <SubType>compile</SubType>
+    </None>
     <Compile Include="src\ASF\sam0\drivers\tcc\tcc.c">
       <SubType>compile</SubType>
     </Compile>
     <None Include="src\ASF\sam0\drivers\tcc\tcc.h">
       <SubType>compile</SubType>
     </None>
+    <None Include="src\config\conf_spi.h">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="src\config\conf_at25dfx.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\flash_mem.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\flash_mem.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\fsm_table.c">
       <SubType>compile</SubType>
     </Compile>

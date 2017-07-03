@@ -56,6 +56,9 @@
 #include <compiler.h>
 #include <status_codes.h>
 
+// From module: Common files for AT25DFx SerialFlash drivers
+#include <at25dfx.h>
+
 // From module: Generic board support
 #include <board.h>
 
@@ -68,8 +71,16 @@
 // From module: Part identification macros
 #include <parts.h>
 
+// From module: SERCOM Callback API
+#include <sercom.h>
+#include <sercom_interrupt.h>
+
 // From module: SERCOM Polled API
 #include <sercom.h>
+
+// From module: SERCOM SPI - Serial Peripheral Interface (Callback APIs)
+#include <spi.h>
+#include <spi_interrupt.h>
 
 // From module: SERCOM USART - Serial Communications (Polled APIs)
 #include <usart.h>

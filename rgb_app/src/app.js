@@ -149,7 +149,7 @@ export class App extends Component {
         if (data !== ""){
           // data = parseInt(data);
           
-          data = data.charCodeAt(0) - 33;
+          data = data.charCodeAt(0);
           
           ToastAndroid.show("Seu score: " + data, ToastAndroid.LONG);
           console.log("Seu score: " + data);

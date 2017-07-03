@@ -15,6 +15,7 @@
 #include "led.h"
 #include "utils.h"
 #include "hc_blth.h"
+#include "flash_mem.h"
 
 typedef struct
 {

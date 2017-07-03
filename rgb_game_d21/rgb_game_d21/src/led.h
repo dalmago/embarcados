@@ -9,7 +9,7 @@ uint8_t g_led;
 uint8_t b_led;
 
 typedef enum{
-    RED,
+    RED=0,
     GREEN,
     BLUE,
     OFF

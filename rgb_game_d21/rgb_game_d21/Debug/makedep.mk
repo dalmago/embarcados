@@ -2,9 +2,19 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+src\ASF\common2\components\memory\serial_flash\at25dfx\at25dfx.c
+
 src\ASF\sam0\drivers\sercom\sercom.c
 
+src\ASF\sam0\drivers\sercom\sercom_interrupt.c
+
+src\ASF\sam0\drivers\sercom\spi\spi.c
+
+src\ASF\sam0\drivers\sercom\spi\spi_interrupt.c
+
 src\ASF\sam0\drivers\tcc\tcc.c
+
+src\flash_mem.c
 
 src\fsm_table.c
 

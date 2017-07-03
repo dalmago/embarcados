@@ -24,8 +24,9 @@
 int main (void)
 {
 	system_init();
-	setup_rgb(PIN_PB01, PIN_PB06, PIN_PB00);
+	setup_rgb(PIN_PB00, PIN_PB01, PIN_PB06);
 	blth_init();
+	flash_init();
 	initFSM();
 
     while(1){

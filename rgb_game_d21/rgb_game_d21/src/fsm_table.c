@@ -1,6 +1,6 @@
 #include "fsm_table.h"
 
-const led_color_t rgb_sequency[] = { RED, BLUE, RED, GREEN, GREEN };
+led_color_t rgb_sequency[RGB_LENGTH];
 led_color_t rgb_recv[RGB_LENGTH];
 
 uint8_t rgb_index;
@@ -30,6 +30,7 @@ void initFSM(void)
     sm.state = S1;
     
     rgb_index = 0;
+	srand(ultima_pontuacao);
 }
 
 void aguartaInit(void){
@@ -44,6 +45,14 @@ void aguartaInit(void){
 
 void blinkSequency(void){
     
+	if (rgb_index == 0){
+		delay(1000);
+		
+		uint8_t i;
+		for (i=0; i<RGB_LENGTH; i++){
+			rgb_sequency[i] = (led_color_t)random()%3;
+		}
+	}
     if (rgb_index < RGB_LENGTH){        
         set_rgb_color(rgb_sequency[rgb_index]);
         delay(500);
@@ -86,7 +95,8 @@ void checkSequency(void){
     } else if (rgb_index == RGB_LENGTH){ // done receiving
         
         uint8_t score = calculate_score();
-		blth_write_char(score + 33);
+		store_score(score);
+		blth_write_char(score);
         
     } else{
         sm.evento = E1;
