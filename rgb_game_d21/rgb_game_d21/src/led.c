@@ -20,7 +20,7 @@ void setup_rgb(const uint8_t r, const uint8_t g, const uint8_t b){
     port_pin_set_config(b_led, &config_b);
 }
 
-void set_rgb_color(led_color c){
+void set_rgb_color(led_color_t c){
     switch(c){
         case RED:
             port_pin_set_output_level(r_led, 1);
@@ -36,7 +36,7 @@ void set_rgb_color(led_color c){
             port_pin_set_output_level(r_led, 0);
             port_pin_set_output_level(g_led, 0);
             port_pin_set_output_level(b_led, 1);
-            break
+            break;
         default:
             port_pin_set_output_level(r_led, 0);
             port_pin_set_output_level(g_led, 0);

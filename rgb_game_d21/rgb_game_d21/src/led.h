@@ -8,14 +8,14 @@ uint8_t r_led;
 uint8_t g_led;
 uint8_t b_led;
 
-enum led_color{
+typedef enum{
     RED,
     GREEN,
     BLUE,
     OFF
-};
+}led_color_t;
 
 void setup_rgb(const uint8_t r, const uint8_t g, const uint8_t b);
-void set_rgb_color(led_color c);
+void set_rgb_color(led_color_t c);
 
 #endif

@@ -18,14 +18,14 @@
 #include "led.h"
 #include "utils.h"
 // #include "blth.h"
+#include "hc_blth.h"
 // #include "fsm_table.h"
 
 int main (void)
 {
 	system_init();
-    setup_rgb(PORTB.16, PORTB.17, PORTB.11);
-    // init_peripheral_role();
-    
+	setup_rgb(PIN_PB01, PIN_PB06, PIN_PB00);
+	blth_init();
 
     while(1){
         set_rgb_color(RED);
@@ -33,5 +33,7 @@ int main (void)
         set_rgb_color(OFF);
         delay(500);
         
+		blth_write_char('b');
+		blth_recv_char();
     }
 }

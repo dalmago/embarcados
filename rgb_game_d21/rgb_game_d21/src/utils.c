@@ -3,7 +3,7 @@
 // void timer_config(void){
 // }
 
-void delay(uint16_t ms){
+void delay(uint16_t period_ms){
     struct tcc_config tcc_cfg;
     
     tcc_get_config_defaults(&tcc_cfg, TCC1);

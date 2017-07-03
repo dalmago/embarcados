@@ -5,8 +5,8 @@
  */
 
 
-#ifndef FSM_TABELA_H_
-#define FSM_TABELA_H_
+#ifndef __fsm_table_rgb_game__
+#define __fsm_table_rgb_game__
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,8 +29,8 @@ typedef struct
 
 #define RGB_LENGTH 5
 
-const led_color rgb_sequency[] = { RED, BLUE, RED, GREEN, GREEN }
-led_color rgb_recv[RGB_LENGTH];
+const led_color_t rgb_sequency[] = { RED, BLUE, RED, GREEN, GREEN };
+led_color_t rgb_recv[RGB_LENGTH];
 
 uint8_t rgb_index;
 

@@ -79,7 +79,7 @@ void checkSequency(void){
                 rgb_recv[rgb_index] = BLUE;
                 break;
             default:
-                rgb_recv[rgb_index] = NULL;
+                rgb_recv[rgb_index] = OFF;
         }
         
     } else if (rgb_index == RGB_LENGTH){ // done receiving
