@@ -14,6 +14,7 @@
 #include <string.h>
 #include "led.h"
 #include "utils.h"
+#include "hc_blth.h"
 
 typedef struct
 {
@@ -28,11 +29,6 @@ typedef struct
 #define NR_EVENTS 2
 
 #define RGB_LENGTH 5
-
-const led_color_t rgb_sequency[] = { RED, BLUE, RED, GREEN, GREEN };
-led_color_t rgb_recv[RGB_LENGTH];
-
-uint8_t rgb_index;
 
 typedef enum
 {

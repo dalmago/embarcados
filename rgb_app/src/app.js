@@ -22,11 +22,19 @@ export class App extends Component {
     super(props);
     this.state = { estado: 0 };
                   
-    BluetoothSerial.list().then((values) => {console.log(values)});
+    // MAC: "48:D7:05:DA:D3:AE"
+    // RGB: "20:17:02:20:42:79"      
+   
+    BluetoothSerial.connect("20:17:02:20:42:79").then((res) => {
+      console.log('CONNECTED', res);
+      ToastAndroid.show("Bluetooth connected!", ToastAndroid.SHORT);       
+    }).catch((err) => {
+      console.log('Error connecting', err);
+      ToastAndroid.show("ERROR CONNECTING BLUETOOTH", ToastAndroid.LONG);
+    });
   }
   
   render() {
-    console.log(this.state.devs);
     var blankSpace = <Text style={{fontSize: 50}}>{'\n'}</Text>;
     
     return (
@@ -95,19 +103,19 @@ export class App extends Component {
     );
   }
   
-    colorPressed(color){
-      BluetoothSerial.write(color).then((res) => {}).catch((err) => {
-        ToastAndroid.show("Error color: " + err.message, ToastAndroid.SHORT);
-        console.error("Error color: " + err.message);
-      });
-    }
+  colorPressed(color){
+    BluetoothSerial.write(color).then((res) => {}).catch((err) => {
+      ToastAndroid.show("Error color: " + err.message, ToastAndroid.SHORT);
+      console.error("Error color: " + err.message);
+    });
+  }
   
-  gameInit(){
+  gameInit(){    
     BluetoothSerial.write('i').then((res) => {
       ToastAndroid.show("Atenção na sequência de cores!", ToastAndroid.LONG);
       console.log("Atenção na sequência de cores!");      
       
-      this.interval = setInterval(this.waitForOk, 500);
+      this.interval = setInterval(() => this.waitForOk(), 500);
     })
     .catch((err) => {
       ToastAndroid.show("Error i: " + err.message, ToastAndroid.SHORT);
@@ -118,13 +126,15 @@ export class App extends Component {
   waitForOk(){
     BluetoothSerial.available().then((length) => {
       BluetoothSerial.readFromDevice().then((data) => {
-        console.log('data received: ' + data);
+        if (data !== ""){
+          console.log('data received: ' + data);
         
-        if (data == 'o'){
-          clearInterval(this.interval);
-          this.setState({ estado: 1 });
-          
-          this.interval = setInterval(this.waitForScore, 500);
+          if (data == 'o'){
+            clearInterval(this.interval);
+            this.setState({ estado: 1 });
+
+            this.interval = setInterval(() => this.waitForScore(), 500);
+          }
         }
       }).catch((err) => {
         ToastAndroid.show("Error o: " + err.message, ToastAndroid.SHORT);
@@ -135,13 +145,18 @@ export class App extends Component {
   
   waitForScore(){
     BluetoothSerial.available().then((length) => {
-      BluetoothSerial.readFromDevice().then((data) => {        
-        ToastAndroid.show("Seu score: " + data, ToastAndroid.LONG);
-        console.log("Seu score: " + data);
-        
-        clearInterval(this.interval);
-        this.setState({ estado: 0 });
-        
+      BluetoothSerial.readFromDevice().then((data) => {    
+        if (data !== ""){
+          // data = parseInt(data);
+          
+          data = data.charCodeAt(0) - 33;
+          
+          ToastAndroid.show("Seu score: " + data, ToastAndroid.LONG);
+          console.log("Seu score: " + data);
+
+          clearInterval(this.interval);
+          this.setState({ estado: 0 });
+        }
       }).catch((err) => {
         ToastAndroid.show("Error score: " + err.message, ToastAndroid.SHORT);
         console.error("Error score: " + err.message);

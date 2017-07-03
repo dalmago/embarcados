@@ -1,5 +1,10 @@
 #include "fsm_table.h"
 
+const led_color_t rgb_sequency[] = { RED, BLUE, RED, GREEN, GREEN };
+led_color_t rgb_recv[RGB_LENGTH];
+
+uint8_t rgb_index;
+
 //****************************************************************************//
 // State table typedef
 //****************************************************************************//
@@ -22,24 +27,19 @@ const FSM_STATE_TABLE StateTable [NR_STATES][NR_EVENTS] =
 void initFSM(void)
 {
     sm.evento = E0;
-    sm.state = S0;
+    sm.state = S1;
     
     rgb_index = 0;
 }
 
-// callback, quando BLE conectado, seta evento para E1
-
 void aguartaInit(void){
     uint8_t b;
     
-    // if (BLEavailable()){
-    //  b = readBLE();
-    
+	b = blth_recv_char();
+ 
     if (b == 'i'){
         sm.evento = E1;
     }
-    
-    // }
 }
 
 void blinkSequency(void){
@@ -51,10 +51,11 @@ void blinkSequency(void){
         delay(500);
         
     } else if (rgb_index == RGB_LENGTH){
-        // sendBLE('o')
-        rgb_index = 0;
+		blth_write_char('o');
     } else{
         sm.evento = E1;
+		rgb_index = 0;
+		return;
     }
     
     rgb_index++;
@@ -66,7 +67,7 @@ void checkSequency(void){
     if (rgb_index < RGB_LENGTH){ // still receiving bluetooth data
         
         uint8_t color;
-        // color = readBLE();
+		color = blth_recv_char();
         
         switch(color){
             case 'r':
@@ -78,17 +79,19 @@ void checkSequency(void){
             case 'b':
                 rgb_recv[rgb_index] = BLUE;
                 break;
-            default:
-                rgb_recv[rgb_index] = OFF;
+			default:
+				return;
         }
         
     } else if (rgb_index == RGB_LENGTH){ // done receiving
         
         uint8_t score = calculate_score();
-        // sendBLE(score);
+		blth_write_char(score + 33);
         
     } else{
         sm.evento = E1;
+		rgb_index = 0;
+		return;
     }
     
     rgb_index++;
